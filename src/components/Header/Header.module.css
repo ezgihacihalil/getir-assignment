@@ -1,0 +1,33 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 20px;
+    height: 70px;
+    border-bottom: 1px solid $grey;
+    background: #fff;
+    position: sticky;
+    top: 0;
+    transition: top 0.4s ease-in-out;
+    z-index: 99;
+    background-color: #1EA4CE;
+}
+
+&.is-sticky {
+    top: -70px;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+}
+
+.cart {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background: $gold;
+    border-radius: 100%;
+}
