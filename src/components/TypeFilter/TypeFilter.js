@@ -2,16 +2,16 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 
 import { selectTypeFilter } from '../../features/productList/productListSlice';
-// import styles from './Sorting.module.css';
+import styles from './TypeFilter.module.css';
 
-export default function Sorting() {
+export default function TypeFilter() {
   const typeFilters = useSelector(selectTypeFilter);
 
   return (
-    <div>
+    <div className={styles.filters}>
       {
         typeFilters.map((option) => (
-          <div key={option}>
+          <div className={styles.item} key={option}>
             <span>{option}</span>
           </div>
         ))

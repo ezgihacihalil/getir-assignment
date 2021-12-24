@@ -9,9 +9,9 @@ import {
 } from '../cart/cartSlice';
 import Pagination from '../../components/Pagination/Pagination';
 import TypeFilter from '../../components/TypeFilter/TypeFilter';
-// import styles from './ProductList.module.css';
+import styles from './ProductList.module.css';
 
-const PageSize = 10;
+const PageSize = 16;
 
 export default function ProductList() {
   const dispatch = useDispatch();
@@ -32,24 +32,37 @@ export default function ProductList() {
   };
 
   return (
-    <div>
-      Product List
+    <div className={styles.productlist}>
+      <h1 className={styles.title}>Products</h1>
       <TypeFilter />
-      {
-        getPaginatedData().map((product) => (
-          <div key={product.slug}>
-            <span>{product.name}</span>
-            <span>{product.price}</span>
-            <button onClick={() => dispatch(addToCart(product))}>Add</button>
-          </div>
-        ))
-      }
+      <div className={styles.body}>
+        {
+          getPaginatedData().map((product) => (
+            <div className={styles.product} key={product.slug}>
+              <div className={styles.box}>
+                <div className={styles.image} />
+              </div>
+              <div className={styles.info}>
+                <div className={styles.price}>{product.price}</div>
+                <div className={styles.name}>{product.name}</div>
+                <button
+                  type="button"
+                  className={styles.button}
+                  onClick={() => dispatch(addToCart(product))}
+                >
+                  Add
+                </button>
+              </div>
+            </div>
+          ))
+        }
+      </div>
       <Pagination
         className="pagination-bar"
         currentPage={currentPage}
         totalCount={productList.length}
         pageSize={PageSize}
-        onPageChange={page => setCurrentPage(page)}
+        onPageChange={(page) => setCurrentPage(page)}
       />
     </div>
   );

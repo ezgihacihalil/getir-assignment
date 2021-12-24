@@ -5,7 +5,7 @@ import {
   selectSortingOption,
 } from './sortingSlice';
 import { SORTING_OPTIONS } from '../../constants';
-// import styles from './Sorting.module.css';
+import styles from './Sorting.module.css';
 
 export default function Sorting() {
   const selectedValue = useSelector(selectSortingOption);
@@ -13,20 +13,22 @@ export default function Sorting() {
 
   return (
     <div>
-      Sorting
-      {
+      <h2 className={styles.title}>Sorting</h2>
+      <div className={styles.body}>
+        {
         SORTING_OPTIONS.map((option) => (
-          <div key={option.value}>
+          <div className={styles.wrapper} key={option.value}>
             <input
               type="radio"
               value={option.value}
               checked={selectedValue === option.value}
               onChange={(e) => dispatch(setSortingOption(e.target.value))}
             />
-            {option.name}
+            <span className={styles.name}>{option.name}</span>
           </div>
         ))
       }
+      </div>
     </div>
   );
 }

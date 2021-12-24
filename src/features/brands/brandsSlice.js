@@ -24,12 +24,14 @@ export const brandsSlice = createSlice({
   initialState,
   reducers: {
     setBrandSearchKey: (state, action) => {
+      // eslint-disable-next-line no-param-reassign
       state.searchKey = action.payload;
     },
     setSelectedBrands: (state, action) => {
       if (state.checkedBrands.includes(action.payload)) {
         const brands = state.checkedBrands.filter((slug) => slug !== action.payload);
 
+        // eslint-disable-next-line no-param-reassign
         state.checkedBrands = brands;
       } else {
         state.checkedBrands.push(action.payload);
@@ -39,12 +41,15 @@ export const brandsSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchBrands.pending, (state) => {
+        // eslint-disable-next-line no-param-reassign
         state.isLoading = true;
       })
       .addCase(fetchBrands.fulfilled, (state, action) => {
+        /* eslint-disable no-param-reassign */
         state.isLoading = false;
 
         state.list = action.payload;
+        /* eslint-enable no-param-reassign */
       });
   },
 });
@@ -58,7 +63,9 @@ export const selectCheckedBrands = (state) => state.brands.checkedBrands;
 export const selectBrands = (state) => {
   const searchKey = selectBrandSearchKey(state);
 
-  return state.brands.list.filter((item) => item.name.toLowerCase().startsWith(searchKey.toLowerCase()));
+  return state.brands.list.filter((item) => (
+    item.name.toLowerCase().startsWith(searchKey.toLowerCase())
+  ));
 };
 
 export default brandsSlice.reducer;

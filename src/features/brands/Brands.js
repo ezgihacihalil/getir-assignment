@@ -7,7 +7,7 @@ import {
   selectCheckedBrands,
   setSelectedBrands,
 } from './brandsSlice';
-// import styles from './Brands.module.css';
+import styles from './Brands.module.css';
 
 const Brands = () => {
   const dispatch = useDispatch();
@@ -20,12 +20,16 @@ const Brands = () => {
   }, []);
 
   return (
-    <div>
-      Brands
-      <input type="text" onChange={(e) => dispatch(setBrandSearchKey(e.target.value))} />
-      {
+    <div className={styles.brands}>
+      <h2 className={styles.title}>Brands</h2>
+      <div className={styles.body}>
+        <div className={styles.inputWrapper}>
+          <input className={styles.input} placeholder="Search brand" type="text" onChange={(e) => dispatch(setBrandSearchKey(e.target.value))} />
+        </div>
+        <div className={styles.brandlist}>
+          {
         brandList.map((brand) => (
-          <div key={brand.slug}>
+          <div className={styles.wrapper} key={brand.slug}>
             <label>
               <input
                 type="checkbox"
@@ -33,11 +37,13 @@ const Brands = () => {
                 checked={selectedBrands.includes(brand.slug)}
                 onChange={(e) => dispatch(setSelectedBrands(e.target.value))}
               />
-              {brand.name}
+              <span className={styles.name}>{brand.name}</span>
             </label>
           </div>
         ))
       }
+        </div>
+      </div>
     </div>
   );
 };

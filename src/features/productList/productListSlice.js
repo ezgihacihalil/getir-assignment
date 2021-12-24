@@ -26,9 +26,11 @@ export const productListSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchProducts.pending, (state) => {
+        // eslint-disable-next-line no-param-reassign
         state.isLoading = true;
       })
       .addCase(fetchProducts.fulfilled, (state, action) => {
+        /* eslint-disable no-param-reassign */
         state.isLoading = false;
 
         state.value = action.payload;
@@ -38,6 +40,8 @@ export const productListSlice = createSlice({
             state.types.push(product.itemType);
           }
         });
+
+        /* eslint-enable no-param-reassign */
       });
   },
 });

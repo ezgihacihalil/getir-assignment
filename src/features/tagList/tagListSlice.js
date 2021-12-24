@@ -11,17 +11,17 @@ export const tagListSlice = createSlice({
   initialState,
   reducers: {
     setTagListSearchKey: (state, action) => {
+      // eslint-disable-next-line no-param-reassign
       state.searchKey = action.payload;
     },
     setSelectedTags: (state, action) => {
       if (state.checkedTags.includes(action.payload)) {
         const tags = state.checkedTags.filter((slug) => slug !== action.payload);
 
+        // eslint-disable-next-line no-param-reassign
         state.checkedTags = tags;
       } else {
         state.checkedTags.push(action.payload);
-        console.log(state.checkedTags)
-
       }
     },
   },
@@ -55,7 +55,8 @@ export const selectTags = (state) => {
   const searchKey = selectTagListSearchKey(state);
   const tagList = selectTagList(state);
 
-  return Object.keys(tagList).filter((item) => item.toLowerCase().startsWith(searchKey.toLowerCase()));
+  return Object.keys(tagList).filter((item) => (
+    item.toLowerCase().startsWith(searchKey.toLowerCase())));
 };
 
 export default tagListSlice.reducer;

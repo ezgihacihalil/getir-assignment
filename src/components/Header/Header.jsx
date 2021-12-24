@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import logoUrl from '../../assets/svg/Logo.svg';
 
 import styles from './Header.module.css';
 
@@ -22,17 +23,19 @@ const Header = () => {
 
   return (
     <header className={`${styles.header} ${isSticky ? styles.isSticky : ''}`}>
-      <a href="/" rel="noreferrer">
-        Market
-      </a>
-      {' '}
-      <div className={styles.headerRight}>
-        <div className={styles.cart}>
-          $35.95
+      <div className={styles.inner}>
+        <a className={styles.logo} href="/" rel="noreferrer">
+          <img src={logoUrl} alt="Market" />
+        </a>
+        {' '}
+        <div className={styles.right}>
+          <div className={styles.cart}>
+            $35.95
+          </div>
         </div>
-      </div>
-      {' '}
+        {' '}
 
+      </div>
     </header>
   );
 };

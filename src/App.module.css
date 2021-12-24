@@ -3,5 +3,13 @@
 }
 
 .container {
+  background-color: #E5E5E5;
+  padding-top: 40px;
+}
+
+.inner {
   display: flex;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
 }

@@ -12,27 +12,30 @@ export default function Cart() {
   const dispatch = useDispatch();
 
   return (
-    <div>
+    <div className={styles.cart}>
       Cart
       {
         items.map((item) => (
           <>
             <span>{item.name}</span>
             <button
+              type="button"
               className={styles.button}
               aria-label="Decrement value"
-              onClick={() => dispatch(decrement())}
+              onClick={() => dispatch(decrement(item))}
             >
               -
             </button>
-            <span className={styles.value}>{1}</span>
+            <span className={styles.value}>{item.amount}</span>
             <button
+              type="button"
               className={styles.button}
               aria-label="Increment value"
-              onClick={() => dispatch(increment())}
+              onClick={() => dispatch(increment(item))}
             >
               +
             </button>
+            <span>{item.totalPrice || item.price}</span>
           </>
         ))
       }

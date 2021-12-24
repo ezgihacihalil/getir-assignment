@@ -1,9 +1,4 @@
 .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 14px 20px;
-    height: 70px;
     border-bottom: 1px solid $grey;
     background: #fff;
     position: sticky;
@@ -17,9 +12,25 @@
     top: -70px;
 }
 
-.header-right {
+.inner {
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo {
+    flex: 2;
+    text-align: center;
+}
+
+.right {
     display: flex;
     align-items: center;
+    padding: 18px 30px;
+    background-color: #147594;
+    color: #fff;
 }
 
 .cart {
@@ -28,6 +39,6 @@
     justify-content: center;
     width: 36px;
     height: 36px;
-    background: $gold;
+    background-color: $gold;
     border-radius: 100%;
 }

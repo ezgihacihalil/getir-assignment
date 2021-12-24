@@ -76,3 +76,36 @@
   opacity: 1;
   transition: 0s;
 }
+
+.title {
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 18px;
+  margin: 0;
+  padding-bottom: 12px;
+  color: #697488;
+}
+
+.body {
+  background: white;
+  padding: 16px 24px;
+  box-shadow: 0px 6px 24px rgb(93 62 188 / 4%);
+  border-radius: 2px;
+  box-sizing: border-box;
+  width: 280px;
+}
+
+.wrapper {
+  margin: 9px 0;
+  max-width: 250px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  color: #525252;
+  display: flex;
+  align-items: center;
+}
+
+.name {
+  margin-left: 12px;
+}

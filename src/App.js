@@ -13,16 +13,16 @@ function App() {
     <div className="App">
       <Header />
       <div className={styles.container}>
-        <div>
-          <Sorting />
-          <Brands />
-          <TagList />
-        </div>
-        <div>
+        <div className={styles.inner}>
+          <div>
+            <Sorting />
+            <Brands />
+            <TagList />
+          </div>
           <ProductList />
-        </div>
-        <div>
-          <Cart />
+          <div>
+            <Cart />
+          </div>
         </div>
       </div>
     </div>
