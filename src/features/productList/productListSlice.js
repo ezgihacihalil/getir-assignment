@@ -2,10 +2,10 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 import fetcher from '../../services/fetcher';
 import api from '../../services/api';
+import { selectCheckedBrands } from '../brands/brandsSlice';
 
 const initialState = {
   value: [],
-  tags: {},
   types: [],
   isLoading: false,
 };
@@ -34,14 +34,6 @@ export const productListSlice = createSlice({
         state.value = action.payload;
 
         state.value.forEach((product) => {
-          product.tags.forEach((tag) => {
-            if (state.tags[tag]) {
-              state.tags[tag] += 1;
-            } else {
-              state.tags[tag] = 1;
-            }
-          });
-
           if (!state.types.includes(product.itemType)) {
             state.types.push(product.itemType);
           }
@@ -50,8 +42,16 @@ export const productListSlice = createSlice({
   },
 });
 
-export const selectProducts = (state) => state.productList.value;
-export const selectTagList = (state) => state.productList.tags;
 export const selectTypeFilter = (state) => state.productList.types;
+
+export const selectProducts = (state) => {
+  const checkedBrands = selectCheckedBrands(state);
+
+  if (checkedBrands.length) {
+    return state.productList.value.filter((item) => checkedBrands.includes(item.manufacturer));
+  }
+
+  return state.productList.value;
+};
 
 export default productListSlice.reducer;

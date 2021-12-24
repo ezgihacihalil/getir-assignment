@@ -4,7 +4,7 @@ import Cart from './features/cart/Cart';
 import ProductList from './features/productList/ProductList';
 import Sorting from './features/sorting/Sorting';
 import Brands from './features/brands/Brands';
-import TagList from './components/TagList/TagList';
+import TagList from './features/tagList/TagList';
 
 import styles from './App.module.css';
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   selectProducts,
@@ -24,18 +24,19 @@ export default function ProductList() {
 
   const [currentPage, setCurrentPage] = useState(1);
 
-  const currentTableData = useMemo(() => {
+  const getPaginatedData = () => {
     const firstPageIndex = (currentPage - 1) * PageSize;
     const lastPageIndex = firstPageIndex + PageSize;
+
     return productList.slice(firstPageIndex, lastPageIndex);
-  }, [currentPage]);
+  };
 
   return (
     <div>
       Product List
       <TypeFilter />
       {
-        currentTableData.map((product) => (
+        getPaginatedData().map((product) => (
           <div key={product.slug}>
             <span>{product.name}</span>
             <span>{product.price}</span>

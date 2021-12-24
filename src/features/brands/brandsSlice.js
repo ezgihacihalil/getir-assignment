@@ -6,6 +6,8 @@ import api from '../../services/api';
 const initialState = {
   list: [],
   isLoading: false,
+  searchKey: '',
+  checkedBrands: [],
 };
 
 export const fetchBrands = createAsyncThunk(
@@ -20,7 +22,20 @@ export const fetchBrands = createAsyncThunk(
 export const brandsSlice = createSlice({
   name: 'brands',
   initialState,
-  reducers: {},
+  reducers: {
+    setBrandSearchKey: (state, action) => {
+      state.searchKey = action.payload;
+    },
+    setSelectedBrands: (state, action) => {
+      if (state.checkedBrands.includes(action.payload)) {
+        const brands = state.checkedBrands.filter((slug) => slug !== action.payload);
+
+        state.checkedBrands = brands;
+      } else {
+        state.checkedBrands.push(action.payload);
+      }
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchBrands.pending, (state) => {
@@ -34,6 +49,16 @@ export const brandsSlice = createSlice({
   },
 });
 
-export const selectBrands = (state) => state.brands.list;
+export const { setBrandSearchKey, setSelectedBrands } = brandsSlice.actions;
+
+export const selectBrandSearchKey = (state) => state.brands.searchKey;
+
+export const selectCheckedBrands = (state) => state.brands.checkedBrands;
+
+export const selectBrands = (state) => {
+  const searchKey = selectBrandSearchKey(state);
+
+  return state.brands.list.filter((item) => item.name.toLowerCase().startsWith(searchKey.toLowerCase()));
+};
 
 export default brandsSlice.reducer;
