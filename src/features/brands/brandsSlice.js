@@ -29,7 +29,7 @@ export const brandsSlice = createSlice({
       .addCase(fetchBrands.fulfilled, (state, action) => {
         state.isLoading = false;
 
-        state.value = action.payload;
+        state.list = action.payload;
       });
   },
 });

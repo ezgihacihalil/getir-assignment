@@ -10,7 +10,6 @@ const Brands = () => {
   const dispatch = useDispatch();
 
   const brandList = useSelector(selectBrands);
-  console.log(brandList)
 
   useEffect(() => {
     dispatch(fetchBrands());
@@ -19,6 +18,13 @@ const Brands = () => {
   return (
     <div>
       Brands
+      {
+        brandList.map((brand) => (
+          <div key={brand.slug}>
+            <span>{brand.name}</span>
+          </div>
+        ))
+      }
     </div>
   );
 };
