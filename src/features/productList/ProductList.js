@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   selectProducts,
@@ -7,7 +7,11 @@ import {
 import {
   addToCart,
 } from '../cart/cartSlice';
+import Pagination from '../../components/Pagination/Pagination';
+import TypeFilter from '../../components/TypeFilter/TypeFilter';
 // import styles from './ProductList.module.css';
+
+const PageSize = 10;
 
 export default function ProductList() {
   const dispatch = useDispatch();
@@ -18,11 +22,20 @@ export default function ProductList() {
     dispatch(fetchProducts());
   }, []);
 
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const currentTableData = useMemo(() => {
+    const firstPageIndex = (currentPage - 1) * PageSize;
+    const lastPageIndex = firstPageIndex + PageSize;
+    return productList.slice(firstPageIndex, lastPageIndex);
+  }, [currentPage]);
+
   return (
     <div>
       Product List
+      <TypeFilter />
       {
-        productList.slice(0, 16).map((product) => (
+        currentTableData.map((product) => (
           <div key={product.slug}>
             <span>{product.name}</span>
             <span>{product.price}</span>
@@ -30,6 +43,13 @@ export default function ProductList() {
           </div>
         ))
       }
+      <Pagination
+        className="pagination-bar"
+        currentPage={currentPage}
+        totalCount={productList.length}
+        pageSize={PageSize}
+        onPageChange={page => setCurrentPage(page)}
+      />
     </div>
   );
 }
