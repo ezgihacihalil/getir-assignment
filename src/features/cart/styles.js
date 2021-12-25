@@ -1,13 +1,18 @@
 import styled from 'styled-components';
 
 export const Cart = styled.div`
-  flex: 1;
-  width: 280px;
   background: white;
+  width: 280px;
+  height: 100%;
   border: 8px solid #1EA4CE;
   border-radius: 2px;
   box-sizing: border-box;
   padding: 24px;
+  margin-left: 16px;
+
+  @media (max-width: 1200px) {
+    margin-top: 100px;
+  } 
 `;
 
 export const ItemName = styled.div`
@@ -23,11 +28,8 @@ export const Total = styled.div`
 `;
 
 export const ItemPrice = styled.div`
-  background: none;
   font-size: 14px;
   line-height: 16px;
-  padding: 16px 24px;
-  border: 2px solid #1EA4CE;
   color: #1EA4CE; 
 `;
 

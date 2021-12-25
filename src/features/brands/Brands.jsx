@@ -9,8 +9,11 @@ import {
 } from './brandsSlice';
 import Title from '../../components/Title/Title';
 import {
-  BrandList, Content, InputWrapper, Input, Brand, Wrapper, Label, ItemName,
+  BrandList, Wrapper, ItemName,
 } from './styles';
+import Content from '../../components/Content/Content';
+import Flexbox from '../../components/Flexbox/Flexbox';
+import Checkbox from '../../components/Checkbox/Checkbox';
 
 const Brands = () => {
   const dispatch = useDispatch();
@@ -25,27 +28,22 @@ const Brands = () => {
   return (
     <BrandList>
       <Title title="Brands" />
-      <Content>
-        <InputWrapper>
-          <Input placeholder="Search brand" type="text" onChange={(e) => dispatch(setBrandSearchKey(e.target.value))} />
-        </InputWrapper>
-        <Brand>
-          {
+      <Content placeholder="Search brand" onChange={(e) => dispatch(setBrandSearchKey(e.target.value))}>
+        {
         brandList.map((brand) => (
           <Wrapper key={brand.slug}>
-            <Label>
-              <input
+            <Flexbox alignCenter justifyContent="start">
+              <Checkbox
                 type="checkbox"
                 value={brand.slug}
                 checked={selectedBrands.includes(brand.slug)}
                 onChange={(e) => dispatch(setSelectedBrands(e.target.value))}
               />
               <ItemName>{brand.name}</ItemName>
-            </Label>
+            </Flexbox>
           </Wrapper>
         ))
       }
-        </Brand>
       </Content>
     </BrandList>
   );

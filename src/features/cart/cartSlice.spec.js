@@ -1,33 +1,47 @@
-import counterReducer, {
-  increment,
+import cartReducer, {
+  addToCart,
   decrement,
-  incrementByAmount,
-} from './counterSlice';
+  increment,
+  selectCartTotal,
+} from './cartSlice';
 
-describe('counter reducer', () => {
+describe('cart reducer', () => {
   const initialState = {
-    value: 3,
-    status: 'idle',
+    list: [],
   };
+
   it('should handle initial state', () => {
-    expect(counterReducer(undefined, { type: 'unknown' })).toEqual({
-      value: 0,
-      status: 'idle',
+    expect(cartReducer(undefined, { type: 'unknown' })).toEqual({
+      list: [],
     });
   });
 
+  it('should handle addToCart', () => {
+    const actual = cartReducer(initialState, addToCart({ slug: 'test', price: 10 }));
+
+    expect(actual.list).toEqual([{ slug: 'test', totalPrice: 10, price: 10, amount: 1 }]);
+  });
+
   it('should handle increment', () => {
-    const actual = counterReducer(initialState, increment());
-    expect(actual.value).toEqual(4);
+    const actual = cartReducer(initialState, addToCart({ slug: 'test', price: 10 }));
+
+    expect(actual.list).toEqual([{ slug: 'test', totalPrice: 10, price: 10, amount: 1 }]);
+
+    const newState = cartReducer(actual, increment({ slug: 'test', price: 10 }));
+    expect(newState.list).toEqual([{ slug: 'test', totalPrice: 20, price: 10, amount: 2 }]);
   });
 
   it('should handle decrement', () => {
-    const actual = counterReducer(initialState, decrement());
-    expect(actual.value).toEqual(2);
+    const actual = cartReducer(initialState, addToCart({ slug: 'test', price: 10 }));
+    expect(actual.list).toEqual([{ slug: 'test', totalPrice: 10, price: 10, amount: 1 }]);
+
+    const newState = cartReducer(actual, decrement({ slug: 'test', price: 10 }));
+    expect(newState.list).toEqual([]);
   });
 
-  it('should handle incrementByAmount', () => {
-    const actual = counterReducer(initialState, incrementByAmount(2));
-    expect(actual.value).toEqual(5);
+  test('should handle selectCartTotal', () => {
+    const result = selectCartTotal({ cart: { list: [{ slug: 'test', totalPrice: 30, amount: 3 }, { slug: 'test2', totalPrice: 30 }] } });
+
+    expect(result).toEqual('60.00');
   });
 });

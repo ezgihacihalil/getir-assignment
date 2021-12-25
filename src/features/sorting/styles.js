@@ -1,12 +1,24 @@
 import styled from 'styled-components';
 
-export const Content = styled.div`
+export const Sorting = styled.div`
+  width: 280px;
+
+  @media (max-width: 1200px) {  
+    width: 30%;
+  }
+`;
+
+export const SortingBody = styled.div`
   background: white;
   padding: 16px 24px;
   box-shadow: 0px 6px 24px rgb(93 62 188 / 4%);
   border-radius: 2px;
   box-sizing: border-box;
-  width: 280px;
+
+  @media (max-width: 1200px) {  
+    min-height: 171px;
+    max-height: 171px;
+  }
 `;
 
 export const Wrapper = styled.div`

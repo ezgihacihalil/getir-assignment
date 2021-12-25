@@ -1,10 +1,13 @@
 import React from 'react';
 
-import { usePagination, DOTS } from './usePagination';
+import { usePagination } from './usePagination';
 
 import {
-  PaginationList, ListItem, ArrowLeft, ArrowRight,
+  PaginationList, ListItem, ArrowButton, PrevButton, PageNumber, NextButton, Image,
 } from './styles';
+import arrowLeft from '../../assets/svg/arrow-left.svg';
+import arrowRight from '../../assets/svg/arrow-right.svg';
+import { DOTS } from '../../constants';
 
 const Pagination = ({
   onPageChange,
@@ -38,14 +41,17 @@ const Pagination = ({
   return (
     <PaginationList>
       <ListItem>
-        <button
-          type="button"
+        <div
+          role="button"
           tabIndex={0}
           onClick={onPrevious}
           onKeyPress={onPrevious}
         >
-          <ArrowLeft>Prev</ArrowLeft>
-        </button>
+          <ArrowButton>
+            <Image src={arrowLeft} alt="" />
+            <PrevButton>Prev</PrevButton>
+          </ArrowButton>
+        </div>
       </ListItem>
       {paginationRange.map((pageNumber) => {
         if (pageNumber === DOTS) {
@@ -54,26 +60,29 @@ const Pagination = ({
 
         return (
           <ListItem>
-            <button
-              type="button"
+            <PageNumber
+              role="button"
               tabIndex={0}
               onClick={() => onPageChange(pageNumber)}
               onKeyPress={() => onPageChange(pageNumber)}
             >
               {pageNumber}
-            </button>
+            </PageNumber>
           </ListItem>
         );
       })}
       <ListItem>
-        <button
-          type="button"
+        <div
+          role="button"
           tabIndex={0}
           onClick={onNext}
           onKeyPress={onNext}
         >
-          <ArrowRight>Next</ArrowRight>
-        </button>
+          <ArrowButton>
+            <NextButton>Next</NextButton>
+            <Image src={arrowRight} alt="" />
+          </ArrowButton>
+        </div>
       </ListItem>
     </PaginationList>
   );

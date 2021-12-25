@@ -6,22 +6,23 @@ import {
 } from './sortingSlice';
 import { SORTING_OPTIONS } from '../../constants';
 import Title from '../../components/Title/Title';
+import Checkbox from '../../components/Checkbox/Checkbox';
 import {
-  Content, Wrapper, Input, ItemName,
+  Sorting, SortingBody, Wrapper, ItemName,
 } from './styles';
 
-export default function Sorting() {
+export default function SortingComponent() {
   const selectedValue = useSelector(selectSortingOption);
   const dispatch = useDispatch();
 
   return (
-    <div>
+    <Sorting>
       <Title title="Sorting" />
-      <Content>
+      <SortingBody>
         {
         SORTING_OPTIONS.map((option) => (
           <Wrapper key={option.value}>
-            <Input
+            <Checkbox
               type="radio"
               value={option.value}
               checked={selectedValue === option.value}
@@ -31,7 +32,7 @@ export default function Sorting() {
           </Wrapper>
         ))
       }
-      </Content>
-    </div>
+      </SortingBody>
+    </Sorting>
   );
 }

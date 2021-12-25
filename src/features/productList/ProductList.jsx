@@ -9,13 +9,13 @@ import {
 } from '../cart/cartSlice';
 import Pagination from '../../components/Pagination/Pagination';
 import TypeFilter from '../../components/TypeFilter/TypeFilter';
+import Button from '../../components/Button/Button';
 import {
-  Product, MainTitle, Content, ImageBox, Image, Info, Price, ItemName, Button,
+  ProductList, Product, MainTitle, Content, ImageBox, Image, Info, Price, ItemName,
 } from './styles';
+import { PAGE_SIZE } from '../../constants';
 
-const PageSize = 16;
-
-export default function ProductList() {
+export default function ProductListComponent() {
   const dispatch = useDispatch();
 
   const productList = useSelector(selectProducts);
@@ -27,8 +27,8 @@ export default function ProductList() {
   const [currentPage, setCurrentPage] = useState(1);
 
   const getPaginatedData = () => {
-    const firstPageIndex = (currentPage - 1) * PageSize;
-    const lastPageIndex = firstPageIndex + PageSize;
+    const firstPageIndex = (currentPage - 1) * PAGE_SIZE;
+    const lastPageIndex = firstPageIndex + PAGE_SIZE;
 
     return productList.slice(firstPageIndex, lastPageIndex);
   };
@@ -49,10 +49,9 @@ export default function ProductList() {
                 <ItemName>{product.name}</ItemName>
                 <Button
                   type="button"
+                  label="Add"
                   onClick={() => dispatch(addToCart(product))}
-                >
-                  Add
-                </Button>
+                />
               </Info>
             </Product>
           ))
@@ -62,7 +61,7 @@ export default function ProductList() {
         className="pagination-bar"
         currentPage={currentPage}
         totalCount={productList.length}
-        pageSize={PageSize}
+        pageSize={PAGE_SIZE}
         onPageChange={(page) => setCurrentPage(page)}
       />
     </ProductList>

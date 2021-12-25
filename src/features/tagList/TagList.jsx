@@ -6,8 +6,11 @@ import {
 } from './tagListSlice';
 import Title from '../../components/Title/Title';
 import {
-  Taglist, Content, InputWrapper, Input, Tags, Wrapper, Label, ItemName,
+  Taglist, Wrapper, ItemName,
 } from './styles';
+import ContentComponent from '../../components/Content/Content';
+import Checkbox from '../../components/Checkbox/Checkbox';
+import Flexbox from '../../components/Flexbox/Flexbox';
 
 const TagListComponent = () => {
   const tagList = useSelector(selectTags);
@@ -18,28 +21,30 @@ const TagListComponent = () => {
   return (
     <Taglist>
       <Title title="Tags" />
-      <Content>
-        <InputWrapper>
-          <Input placeholder="Search brand" type="text" onChange={(e) => dispatch(setTagListSearchKey(e.target.value))} />
-        </InputWrapper>
-        <Tags>
-          {
-        Object.keys(tagList).map((tag) => (
-          <Wrapper key={tag}>
-            <Label>
-              <input
+      <ContentComponent placeholder="Search tag" onChange={(e) => dispatch(setTagListSearchKey(e.target.value))}>
+        {
+        tagList.map((tag) => (
+          <Wrapper key={tag.name}>
+            <Flexbox alignCenter justifyContent="start">
+              <Checkbox
                 type="checkbox"
-                value={tag}
-                checked={selectedTags.includes(tag)}
+                value={tag.name}
+                checked={selectedTags.includes(tag.name)}
                 onChange={(e) => dispatch(setSelectedTags(e.target.value))}
               />
-              <ItemName>{tag}</ItemName>
-            </Label>
+              <ItemName>{tag.name}</ItemName>
+              <ItemName>
+                &nbsp;
+                (
+                {tag.count}
+                )
+              </ItemName>
+            </Flexbox>
           </Wrapper>
         ))
       }
-        </Tags>
-      </Content>
+
+      </ContentComponent>
     </Taglist>
   );
 };

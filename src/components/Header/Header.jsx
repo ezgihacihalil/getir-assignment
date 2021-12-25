@@ -1,10 +1,19 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import logoUrl from '../../assets/svg/Logo.svg';
+import logoUrl from '../../assets/svg/logo.svg';
+import basket from '../../assets/svg/basket.svg';
 import { selectCartTotal } from '../../features/cart/cartSlice';
 
 import {
-  Header, Inner, Logo, HeaderPrice, CartTotal,
+  Header,
+  InnerWrapper,
+  StyledContent,
+  Logo,
+  HeaderPrice,
+  CartTotal,
+  StyledContainer,
+  Image,
+  ImageBasket,
 } from './styles';
 
 const HeaderComponent = () => {
@@ -12,17 +21,21 @@ const HeaderComponent = () => {
 
   return (
     <Header>
-      <Inner>
+      <InnerWrapper>
+        <StyledContent />
         <Logo href="/" rel="noreferrer">
-          <img src={logoUrl} alt="Market" />
+          <Image src={logoUrl} alt="Market" />
         </Logo>
         <HeaderPrice>
-          <CartTotal>
-            $
-            {cartTotal}
-          </CartTotal>
+          <StyledContainer>
+            <ImageBasket src={basket} alt="" />
+            <CartTotal>
+              $
+              {cartTotal}
+            </CartTotal>
+          </StyledContainer>
         </HeaderPrice>
-      </Inner>
+      </InnerWrapper>
     </Header>
   );
 };

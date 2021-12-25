@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const ProductList = styled.div`
   flex: 2;
-  margin: 0 16px;
+  margin-left: 16px;
 `;
 
 export const Content = styled.div`
@@ -20,7 +20,7 @@ export const Product = styled.div`
   transition: 0.4s;
 
   @media (max-width: 1200px) {
-    width: 135px;
+    width: 44%;
     margin: 8px auto;
   }
 `;
@@ -32,9 +32,15 @@ export const ImageBox = styled.div`
 `;
 
 export const Image = styled.div`
-width: 92px;
-height: 92px;
-background: #c4c4c4; 
+  width: 92px;
+  height: 92px;
+  background: #c4c4c4; 
+  margin: auto;
+
+  @media (max-width: 1200px) {
+    width: 131px;
+    height: 131px;
+  }
 `;
 
 export const Info = styled.div`
@@ -42,6 +48,7 @@ export const Info = styled.div`
   height: 96px;
   display: flex;
   flex-direction: column;
+  text-align: left;
 `;
 
 export const Price = styled.div`
@@ -61,20 +68,6 @@ export const ItemName = styled.span`
   flex: 2;
 `;
 
-export const Button = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 6px 0;
-  font-size: 12px;
-  line-height: 20px;
-  height: 20px;
-  width: 100%;
-  background-color: #1ea4ce;
-  color: #fff;
-  border-radius: 2px;
-`;
-
 export const MainTitle = styled.h1`
   font-weight: normal;
   font-size: 20px;
@@ -82,6 +75,7 @@ export const MainTitle = styled.h1`
   font-size: 20px;
   color: #6f6f6f;
   margin: 0 0 16px;
+  text-align: left;
 `;
 
 export default {};

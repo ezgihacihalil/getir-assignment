@@ -5,9 +5,10 @@ import ProductList from './features/productList/ProductList';
 import Sorting from './features/sorting/Sorting';
 import Brands from './features/brands/Brands';
 import TagList from './features/tagList/TagList';
+import Flexbox from './components/Flexbox/Flexbox';
 
 import {
-  Container, InnerContainer, Inner, Flexbox,
+  Container, InnerContainer, ContentBody,
 } from './styles';
 
 function App() {
@@ -15,17 +16,15 @@ function App() {
     <Container>
       <Header />
       <InnerContainer>
-        <Inner>
-          <Flexbox>
+        <ContentBody>
+          <Flexbox direction="column">
             <Sorting />
             <Brands />
             <TagList />
           </Flexbox>
           <ProductList />
-          <div>
-            <Cart />
-          </div>
-        </Inner>
+          <Cart />
+        </ContentBody>
       </InnerContainer>
     </Container>
   );

@@ -31,7 +31,5 @@ export const Option = styled.span`
   justify-content: center;
   align-items: center;
   margin: 0 12px;
-  box-sizing: border-box;
-  color: #fff;
-  background-color: #1EA4CE;
+  box-sizing: border-box;  
 `;

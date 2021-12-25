@@ -65,6 +65,7 @@ export const selectCartTotal = (state) => {
   const items = selectItems(state);
 
   const total = items.reduce((acc, curr) => {
+    // eslint-disable-next-line no-param-reassign
     acc += curr.totalPrice;
 
     return acc;

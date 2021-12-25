@@ -6,10 +6,14 @@ export const Container = styled.div`
 
 export const InnerContainer = styled.div`
   background-color: #E5E5E5;
-  padding-top: 40px;
+  padding: 40px 0;
+
+  @media (max-width: 960px) {
+    padding: 20px;
+  }
 `;
 
-export const Inner = styled.div`
+export const ContentBody = styled.div`
   position: relative;
   display: flex;
   justify-content: space-between;
@@ -19,13 +23,6 @@ export const Inner = styled.div`
   @media (max-width: 1200px) {
     flex-wrap: wrap;
     max-width: 960px;
-  }
-`;
-
-export const Flexbox = styled.div`
-  @media (max-width: 1200px) {
-    display: flex;
-    justify-content: space-between;
   }
 `;
 

@@ -1,33 +1,56 @@
-import counterReducer, {
-  increment,
-  decrement,
-  incrementByAmount,
-} from './counterSlice';
+import brandsReducer, {
+  selectBrands,
+  selectBrandSearchKey,
+  setBrandSearchKey,
+  setSelectedBrands,
+} from './brandsSlice';
 
-describe('counter reducer', () => {
+describe('brands reducer', () => {
   const initialState = {
-    value: 3,
-    status: 'idle',
+    list: [],
+    isLoading: false,
+    searchKey: 'aa',
+    checkedBrands: [],
   };
+
   it('should handle initial state', () => {
-    expect(counterReducer(undefined, { type: 'unknown' })).toEqual({
-      value: 0,
-      status: 'idle',
+    expect(brandsReducer(undefined, { type: 'unknown' })).toEqual({
+      list: [],
+      isLoading: false,
+      searchKey: '',
+      checkedBrands: [],
     });
   });
 
-  it('should handle increment', () => {
-    const actual = counterReducer(initialState, increment());
-    expect(actual.value).toEqual(4);
+  it('should handle setBrandSearchKey', () => {
+    const actual = brandsReducer(initialState, setBrandSearchKey('test'));
+    expect(actual.searchKey).toEqual('test');
   });
 
-  it('should handle decrement', () => {
-    const actual = counterReducer(initialState, decrement());
-    expect(actual.value).toEqual(2);
+  it('should handle setSelectedBrands', () => {
+    const actual = brandsReducer(initialState, setSelectedBrands('test brand'));
+    expect(actual.checkedBrands).toEqual(['test brand']);
+
+    const newState = brandsReducer(actual, setSelectedBrands('test brand'));
+    expect(newState.checkedBrands).toEqual([]);
   });
 
-  it('should handle incrementByAmount', () => {
-    const actual = counterReducer(initialState, incrementByAmount(2));
-    expect(actual.value).toEqual(5);
+  it('should handle setBrandSearchKey', () => {
+    const actual = brandsReducer(initialState, setBrandSearchKey('test'));
+    expect(actual.searchKey).toEqual('test');
+  });
+
+  test('should handle selectBrands', () => {
+    const result = selectBrands({ brands: { list: [{ name: 'test brand' }], searchKey: 'aa' } });
+
+    expect(result).toEqual([]);
+
+    expect(result).toMatchSnapshot();
+  })
+
+  it('should handle selectBrandSearchKey', () => {
+    const result = selectBrandSearchKey({ brands: { searchKey: 'test' } });
+
+    expect(result).toMatchSnapshot();
   });
 });

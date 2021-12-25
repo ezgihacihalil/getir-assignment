@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { selectProducts } from '../productList/productListSlice';
+// eslint-disable-next-line import/no-cycle
+import { selectAllProducts } from '../productList/productListSlice';
 
 const initialState = {
   searchKey: '',
@@ -30,7 +31,7 @@ export const tagListSlice = createSlice({
 export const { setTagListSearchKey, setSelectedTags } = tagListSlice.actions;
 
 export const selectTagList = (state) => {
-  const productList = selectProducts(state);
+  const productList = selectAllProducts(state);
 
   const tags = [];
 

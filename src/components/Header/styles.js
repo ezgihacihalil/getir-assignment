@@ -8,6 +8,14 @@ export const Header = styled.header`
   transition: top 0.4s ease-in-out;
   z-index: 99;
   background-color: #1EA4CE;
+
+  @media (max-width: 960px) {
+    padding: 0 20px;
+  }
+`;
+
+export const StyledContent = styled.div`
+  flex: 1;
 `;
 
 export const Logo = styled.a`
@@ -15,25 +23,39 @@ export const Logo = styled.a`
   text-align: center;
 `;
 
-export const HeaderPrice = styled.header`
-  display: flex;
-  align-items: center;
-  padding: 18px 30px;
-  background-color: #147594;
-  color: #fff;
+export const HeaderPrice = styled.div`
+  flex: 1;
 `;
 
-export const CartTotal = styled.div`
+export const StyledContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
-  background-color: $gold;
-  border-radius: 100%;
+  padding: 26px 30px;
+  margin-left: auto;
+  color: #fff;
+  box-sizing: border-box;
+  width: 130px;
+  max-width: 130px;
+  background-color: #147594;
 `;
 
-export const Inner = styled.div`
+export const CartTotal = styled.span`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100%;
+  margin-left: 8px;
+`;
+
+export const Image = styled.img``;
+
+export const ImageBasket = styled.img`
+  width: 24px;
+  height: 24px;
+`;
+
+export const InnerWrapper = styled.div`
   max-width: 1200px;
   margin: auto;
   display: flex;

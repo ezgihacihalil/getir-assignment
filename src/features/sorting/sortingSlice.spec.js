@@ -1,33 +1,19 @@
-import counterReducer, {
-  increment,
-  decrement,
-  incrementByAmount,
-} from './counterSlice';
+import sortingReducer, { setSortingOption } from './sortingSlice';
 
-describe('counter reducer', () => {
+describe('sorting reducer', () => {
   const initialState = {
-    value: 3,
-    status: 'idle',
+    value: '',
   };
+
   it('should handle initial state', () => {
-    expect(counterReducer(undefined, { type: 'unknown' })).toEqual({
-      value: 0,
-      status: 'idle',
+    expect(sortingReducer(undefined, { type: 'unknown' })).toEqual({
+      value: '',
     });
   });
 
-  it('should handle increment', () => {
-    const actual = counterReducer(initialState, increment());
-    expect(actual.value).toEqual(4);
-  });
+  it('should handle setSelectedType', () => {
+    const actual = sortingReducer(initialState, setSortingOption('test'));
 
-  it('should handle decrement', () => {
-    const actual = counterReducer(initialState, decrement());
-    expect(actual.value).toEqual(2);
-  });
-
-  it('should handle incrementByAmount', () => {
-    const actual = counterReducer(initialState, incrementByAmount(2));
-    expect(actual.value).toEqual(5);
+    expect(actual.value).toEqual('test');
   });
 });

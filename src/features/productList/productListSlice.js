@@ -4,12 +4,14 @@ import fetcher from '../../services/fetcher';
 import api from '../../services/api';
 import { selectCheckedBrands } from '../brands/brandsSlice';
 import { selectSortingOption } from '../sorting/sortingSlice';
+// eslint-disable-next-line import/no-cycle
 import { selectCheckedTags } from '../tagList/tagListSlice';
 import { SORTING_OPTIONS } from '../../constants';
 
 const initialState = {
   value: [],
   types: [],
+  allProducts: [],
   selectedType: '',
   isLoading: false,
 };
@@ -43,6 +45,7 @@ export const productListSlice = createSlice({
         state.isLoading = false;
 
         state.value = action.payload;
+        state.allProducts = action.payload;
 
         state.value.forEach((product) => {
           if (!state.types.includes(product.itemType)) {
@@ -58,6 +61,7 @@ export const { setSelectedType } = productListSlice.actions;
 
 export const selectTypeFilter = (state) => state.productList.types;
 export const selectChosenType = (state) => state.productList.selectedType;
+export const selectAllProducts = (state) => state.productList.allProducts;
 
 export const selectProducts = (state) => {
   const checkedBrands = selectCheckedBrands(state);
@@ -72,7 +76,7 @@ export const selectProducts = (state) => {
   }
 
   if (checkedTags.length) {
-    productList = productList.filter((item) => item.tags.every(t => checkedTags.includes(t)));
+    productList = productList.filter((item) => item.tags.every((t) => checkedTags.includes(t)));
   }
 
   if (selectedType) {
@@ -80,7 +84,7 @@ export const selectProducts = (state) => {
   }
 
   if (selectedSorting) {
-    const option = SORTING_OPTIONS.find(option => selectedSorting === option.value);
+    const option = SORTING_OPTIONS.find((o) => selectedSorting === o.value);
 
     productList = productList.slice().sort(option.sortFunction);
   }

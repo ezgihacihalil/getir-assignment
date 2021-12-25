@@ -19,7 +19,12 @@ const SORTING_OPTIONS = [{
   sortFunction: (a, b) => (a.added < b.added ? 1 : -1),
 }];
 
+const DOTS = '...';
+const PAGE_SIZE = 16;
+
 export {
   SORTING_OPTIONS,
   BASE_URL,
+  DOTS,
+  PAGE_SIZE,
 };

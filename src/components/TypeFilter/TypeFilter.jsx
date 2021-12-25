@@ -2,7 +2,8 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { selectTypeFilter, setSelectedType } from '../../features/productList/productListSlice';
-import { Filters, Item, Option } from './styles';
+import Flexbox from '../Flexbox/Flexbox';
+import { Item, Option } from './styles';
 
 export default function TypeFilter() {
   const typeFilters = useSelector(selectTypeFilter);
@@ -10,7 +11,7 @@ export default function TypeFilter() {
   const dispatch = useDispatch();
 
   return (
-    <Filters>
+    <Flexbox justifyContent="start">
       {
         typeFilters.map((option) => (
           <Item
@@ -24,6 +25,6 @@ export default function TypeFilter() {
           </Item>
         ))
       }
-    </Filters>
+    </Flexbox>
   );
 }
