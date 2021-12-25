@@ -1,4 +1,5 @@
 import brandsReducer, {
+  fetchBrands,
   selectBrands,
   selectBrandSearchKey,
   setBrandSearchKey,
@@ -44,13 +45,20 @@ describe('brands reducer', () => {
     const result = selectBrands({ brands: { list: [{ name: 'test brand' }], searchKey: 'aa' } });
 
     expect(result).toEqual([]);
+  });
 
-    expect(result).toMatchSnapshot();
-  })
+  it('should handle fetchBrands', () => {
+    const action = {
+      type: fetchBrands.fulfilled.type,
+      payload: [{ name: 'test brand' }],
+    };
+    const state = brandsReducer(initialState, action);
 
-  it('should handle selectBrandSearchKey', () => {
-    const result = selectBrandSearchKey({ brands: { searchKey: 'test' } });
-
-    expect(result).toMatchSnapshot();
+    expect(state).toEqual({
+      list: [{ name: 'test brand' }],
+      isLoading: false,
+      searchKey: 'aa',
+      checkedBrands: [],
+    });
   });
 });

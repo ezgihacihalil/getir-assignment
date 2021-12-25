@@ -1,4 +1,4 @@
-import productListReducer, { selectProducts, setSelectedType } from './productListSlice';
+import productListReducer, { fetchProducts, selectProducts, setSelectedType } from './productListSlice';
 
 describe('productList reducer', () => {
   const initialState = {
@@ -45,5 +45,27 @@ describe('productList reducer', () => {
     });
 
     expect(result).toEqual([{ slug: 'test', manufacturer: 'test-manu', tags: ['tag1'] }, { slug: 'test2', manufacturer: 'test-manu', tags: ['tag2'] }]);
+  });
+
+  it('should handle fetchProducts', () => {
+    const action = {
+      type: fetchProducts.fulfilled.type,
+      payload: [{
+        itemType: 'test-type', slug: 'test', manufacturer: 'test-manu', tags: ['tag1'],
+      }],
+    };
+    const state = productListReducer(initialState, action);
+
+    expect(state).toEqual({
+      allProducts: [{
+        itemType: 'test-type', manufacturer: 'test-manu', slug: 'test', tags: ['tag1'],
+      }],
+      isLoading: false,
+      selectedType: '',
+      types: ['test-type'],
+      value: [{
+        itemType: 'test-type', manufacturer: 'test-manu', slug: 'test', tags: ['tag1'],
+      }],
+    });
   });
 });
