@@ -1,8 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { SORTING_OPTIONS } from '../../constants';
 
 const initialState = {
-  value: SORTING_OPTIONS[0].value,
+  value: '',
 };
 
 export const sortingOptionSlice = createSlice({

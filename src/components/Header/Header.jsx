@@ -1,28 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import logoUrl from '../../assets/svg/Logo.svg';
+import { selectCartTotal } from '../../features/cart/cartSlice';
 
 import styles from './Header.module.css';
 
 const Header = () => {
-  const [isSticky, setIsSticky] = useState(false);
-
-  let lastScrollY = window.pageYOffset;
-
-  const onScroll = () => {
-    const scrollY = window.pageYOffset;
-
-    setIsSticky(scrollY > lastScrollY);
-    lastScrollY = scrollY > 0 ? scrollY : 0;
-  };
-
-  useEffect(() => {
-    window.addEventListener('scroll', onScroll);
-
-    return () => window.removeEventListener('scroll', onScroll);
-  }, [isSticky]);
+  const cartTotal = useSelector(selectCartTotal);
 
   return (
-    <header className={`${styles.header} ${isSticky ? styles.isSticky : ''}`}>
+    <header className={styles.header}>
       <div className={styles.inner}>
         <a className={styles.logo} href="/" rel="noreferrer">
           <img src={logoUrl} alt="Market" />
@@ -30,7 +17,8 @@ const Header = () => {
         {' '}
         <div className={styles.right}>
           <div className={styles.cart}>
-            $35.95
+            $
+            {cartTotal}
           </div>
         </div>
         {' '}

@@ -35,7 +35,7 @@ export default function Cart() {
             >
               +
             </button>
-            <span>{item.totalPrice || item.price}</span>
+            <span>${item.totalPrice || item.price}</span>
           </>
         ))
       }

@@ -12,6 +12,8 @@ const TagList = () => {
 
   const dispatch = useDispatch();
 
+  console.log(selectedTags)
+
   return (
     <div>
       <h2 className={styles.title}>Tags</h2>
@@ -21,16 +23,17 @@ const TagList = () => {
         </div>
         <div className={styles.taglist}>
           {
-            Object.keys(tagList).map((tag) => (
-              <div className={styles.wrapper} key={tag}>
+            tagList.map((tag) => (
+              <div className={styles.wrapper} key={tag.name}>
                 <label>
                   <input
                     type="checkbox"
-                    value={tag}
-                    checked={selectedTags.includes(tag)}
+                    value={tag.name}
+                    checked={selectedTags.includes(tag.name)}
                     onChange={(e) => dispatch(setSelectedTags(e.target.value))}
                   />
-                  <span className={styles.name}>{tag}</span>
+                  <span className={styles.name}>{tag.name}</span>
+                  <span className={styles.name}>&nbsp;({tag.count})</span>
                 </label>
               </div>
             ))

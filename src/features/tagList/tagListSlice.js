@@ -32,14 +32,20 @@ export const { setTagListSearchKey, setSelectedTags } = tagListSlice.actions;
 export const selectTagList = (state) => {
   const productList = selectProducts(state);
 
-  const tags = {};
+  const tags = [];
 
   productList.forEach((product) => {
     product.tags.forEach((tag) => {
-      if (tags[tag]) {
-        tags[tag] += 1;
+      const idx = tags.findIndex((t) => t.name === tag);
+
+      if (tags[idx]) {
+        const newTag = {name: tag, count: tags[idx].count + 1};
+
+        tags[idx] = newTag;
       } else {
-        tags[tag] = 1;
+        const newTag = {name: tag, count: 1};
+
+        tags.push(newTag);
       }
     });
   });
@@ -49,14 +55,18 @@ export const selectTagList = (state) => {
 
 export const selectTagListSearchKey = (state) => state.tagList.searchKey;
 
-export const selectCheckedTags = (state) => state.tagList.checkedKeys;
+export const selectCheckedTags = (state) => state.tagList.checkedTags;
 
 export const selectTags = (state) => {
   const searchKey = selectTagListSearchKey(state);
   const tagList = selectTagList(state);
 
-  return Object.keys(tagList).filter((item) => (
-    item.toLowerCase().startsWith(searchKey.toLowerCase())));
+
+  if (searchKey) {
+    return tagList.filter((item) => (
+      item.name.toLowerCase().startsWith(searchKey.toLowerCase())));
+  }
+  return tagList;
 };
 
 export default tagListSlice.reducer;

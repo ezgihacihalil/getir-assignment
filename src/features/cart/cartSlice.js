@@ -15,13 +15,15 @@ export const cartSlice = createSlice({
 
       if (cartItem) {
         const newAmount = (cartItem.amount || 0) + 1;
-        const newCartItem = { ...cartItem, amount: newAmount, price: cartItem.price * newAmount };
+        const totalPrice = (cartItem.price || 0) * newAmount;
+
+        const newCartItem = { ...cartItem, amount: newAmount, totalPrice };
         const idx = state.list.findIndex((item) => item.slug === cartItem.slug);
 
         // eslint-disable-next-line no-param-reassign
         state.list[idx] = newCartItem;
       } else {
-        state.list.push({ ...action.payload, amount: 1 });
+        state.list.push({ ...action.payload, amount: 1, totalPrice: action.payload.price });
       }
     },
     increment: (state, action) => {
@@ -58,5 +60,17 @@ export const cartSlice = createSlice({
 export const { addToCart, increment, decrement } = cartSlice.actions;
 
 export const selectItems = (state) => state.cart.list;
+
+export const selectCartTotal = (state) => {
+  const items = selectItems(state);
+
+  const total = items.reduce((acc, curr) => {
+    acc += curr.totalPrice;
+
+    return acc;
+  }, 0);
+
+  return total.toFixed(2);
+};
 
 export default cartSlice.reducer;

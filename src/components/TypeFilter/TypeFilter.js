@@ -1,17 +1,26 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
-import { selectTypeFilter } from '../../features/productList/productListSlice';
+import { selectTypeFilter, setSelectedType } from '../../features/productList/productListSlice';
 import styles from './TypeFilter.module.css';
 
 export default function TypeFilter() {
   const typeFilters = useSelector(selectTypeFilter);
 
+  const dispatch = useDispatch();
+
   return (
     <div className={styles.filters}>
       {
         typeFilters.map((option) => (
-          <div className={styles.item} key={option}>
+          <div
+            role="button"
+            tabIndex={0}
+            className={styles.item}
+            key={option}
+            onClick={() => dispatch(setSelectedType(option))}
+            onKeyPress={() => dispatch(setSelectedType(option))}
+          >
             <span>{option}</span>
           </div>
         ))
