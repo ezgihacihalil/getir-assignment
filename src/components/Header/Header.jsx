@@ -3,29 +3,28 @@ import { useSelector } from 'react-redux';
 import logoUrl from '../../assets/svg/Logo.svg';
 import { selectCartTotal } from '../../features/cart/cartSlice';
 
-import styles from './Header.module.css';
+import {
+  Header, Inner, Logo, HeaderPrice, CartTotal,
+} from './styles';
 
-const Header = () => {
+const HeaderComponent = () => {
   const cartTotal = useSelector(selectCartTotal);
 
   return (
-    <header className={styles.header}>
-      <div className={styles.inner}>
-        <a className={styles.logo} href="/" rel="noreferrer">
+    <Header>
+      <Inner>
+        <Logo href="/" rel="noreferrer">
           <img src={logoUrl} alt="Market" />
-        </a>
-        {' '}
-        <div className={styles.right}>
-          <div className={styles.cart}>
+        </Logo>
+        <HeaderPrice>
+          <CartTotal>
             $
             {cartTotal}
-          </div>
-        </div>
-        {' '}
-
-      </div>
-    </header>
+          </CartTotal>
+        </HeaderPrice>
+      </Inner>
+    </Header>
   );
 };
 
-export default Header;
+export default HeaderComponent;

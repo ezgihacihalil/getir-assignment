@@ -39,11 +39,11 @@ export const selectTagList = (state) => {
       const idx = tags.findIndex((t) => t.name === tag);
 
       if (tags[idx]) {
-        const newTag = {name: tag, count: tags[idx].count + 1};
+        const newTag = { name: tag, count: tags[idx].count + 1 };
 
         tags[idx] = newTag;
       } else {
-        const newTag = {name: tag, count: 1};
+        const newTag = { name: tag, count: 1 };
 
         tags.push(newTag);
       }
@@ -60,7 +60,6 @@ export const selectCheckedTags = (state) => state.tagList.checkedTags;
 export const selectTags = (state) => {
   const searchKey = selectTagListSearchKey(state);
   const tagList = selectTagList(state);
-
 
   if (searchKey) {
     return tagList.filter((item) => (

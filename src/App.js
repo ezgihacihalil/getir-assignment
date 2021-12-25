@@ -6,26 +6,28 @@ import Sorting from './features/sorting/Sorting';
 import Brands from './features/brands/Brands';
 import TagList from './features/tagList/TagList';
 
-import styles from './App.module.css';
+import {
+  Container, InnerContainer, Inner, Flexbox,
+} from './styles';
 
 function App() {
   return (
-    <div className="App">
+    <Container>
       <Header />
-      <div className={styles.container}>
-        <div className={styles.inner}>
-          <div>
+      <InnerContainer>
+        <Inner>
+          <Flexbox>
             <Sorting />
             <Brands />
             <TagList />
-          </div>
+          </Flexbox>
           <ProductList />
           <div>
             <Cart />
           </div>
-        </div>
-      </div>
-    </div>
+        </Inner>
+      </InnerContainer>
+    </Container>
   );
 }
 
