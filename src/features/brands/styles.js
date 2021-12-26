@@ -21,10 +21,6 @@ export const StyledFlexbox = styled(Flexbox)`
   }
 `;
 
-export const Label = styled.label`
-  display: flex;
-`;
-
 export const ItemName = styled.div`
   max-width: 170px;
   text-overflow: ellipsis;

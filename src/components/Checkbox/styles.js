@@ -12,11 +12,43 @@ export const Checkbox = styled.input`
     background: #FFFFFF;
     box-shadow: 0px 1px 7px rgba(93, 56, 192, 0.4);
     border-radius: 2px;
+    -webkit-appearance: none; 
+
+    &:before {
+      content: '';
+      display: block;
+      background-color: #1EA4CE;
+    }
+
+    &:checked:before {
+      padding: 4px;
+      content: "✔";
+      color: #fff;
+    }
   }
 
   &[type="radio"] {
-    border: 2px solid #DFDEE2;
+    border: 1px solid #DFDEE2;
     background: #FFFFFF;
+    -webkit-appearance: none;
+    border-radius: 50%;
+
+    &:checked {
+      border: 1px solid #1EA4CE;
+    }
+    
+    &:before {
+      content: '';
+      display: block;
+      margin-left: 4px;
+      margin-top: 2px;
+      border-radius: 50%;
+      color: #1EA4CE;
+    }
+
+    &:checked:before {
+      content: "✔";
+    }
   }
 `;
 
