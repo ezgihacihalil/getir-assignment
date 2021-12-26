@@ -1,13 +1,5 @@
 import styled from 'styled-components';
 
-export const Sorting = styled.div`
-  width: 280px;
-
-  @media (max-width: 1200px) {  
-    width: 30%;
-  }
-`;
-
 export const SortingBody = styled.div`
   background: white;
   padding: 16px 24px;
@@ -32,8 +24,7 @@ export const Wrapper = styled.div`
   align-items: center;
 `;
 
-export const Input = styled.input``;
-
 export const ItemName = styled.div`
   margin-left: 12px;
+  font-size: 14px;
 `;

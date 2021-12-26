@@ -1,20 +1,20 @@
 import styled from 'styled-components';
+import { Flexbox } from '../../components/Flexbox/styles';
 
 export const BrandList = styled.div`
   margin: 24px 0;
-  width: 280px;
 
   @media (max-width: 1200px) {
     margin-top: 0;
-    width: 30%;
+  }
+
+  @media (max-width: 768px) {
+    margin: 24px 0;
   }
 `;
 
-export const Wrapper = styled.div`
+export const StyledFlexbox = styled(Flexbox)`
   margin: 16px 0;
-  color: #525252;
-  display: flex;
-  align-items: center;
 
   &:first-child {
     margin-top: 0;

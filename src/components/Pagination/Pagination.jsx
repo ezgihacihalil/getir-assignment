@@ -3,7 +3,7 @@ import React from 'react';
 import { usePagination } from './usePagination';
 
 import {
-  PaginationList, ListItem, ArrowButton, PrevButton, PageNumber, NextButton, Image,
+  PaginationList, ListItem, ArrowButton, PrevButton, PageNumber, NextButton, Image, ButtonWrapper,
 } from './styles';
 import arrowLeft from '../../assets/svg/arrow-left.svg';
 import arrowRight from '../../assets/svg/arrow-right.svg';
@@ -35,23 +35,24 @@ const Pagination = ({
     onPageChange(currentPage - 1);
   };
 
-  // const lastPage = paginationRange[paginationRange.length - 1];
+  const lastPage = paginationRange[paginationRange.length - 1];
 
   // className={classnames('pagination-container', { [className]: className })}
   return (
     <PaginationList>
       <ListItem>
-        <div
+        <ButtonWrapper
           role="button"
           tabIndex={0}
           onClick={onPrevious}
           onKeyPress={onPrevious}
+          className={currentPage === 1 && 'is-disabled'}
         >
           <ArrowButton>
             <Image src={arrowLeft} alt="" />
             <PrevButton>Prev</PrevButton>
           </ArrowButton>
-        </div>
+        </ButtonWrapper>
       </ListItem>
       {paginationRange.map((pageNumber) => {
         if (pageNumber === DOTS) {
@@ -61,6 +62,7 @@ const Pagination = ({
         return (
           <ListItem>
             <PageNumber
+              className={pageNumber === currentPage && 'is-active'}
               role="button"
               tabIndex={0}
               onClick={() => onPageChange(pageNumber)}
@@ -72,17 +74,18 @@ const Pagination = ({
         );
       })}
       <ListItem>
-        <div
+        <ButtonWrapper
           role="button"
           tabIndex={0}
           onClick={onNext}
           onKeyPress={onNext}
+          className={lastPage === currentPage && 'is-disabled'}
         >
           <ArrowButton>
             <NextButton>Next</NextButton>
             <Image src={arrowRight} alt="" />
           </ArrowButton>
-        </div>
+        </ButtonWrapper>
       </ListItem>
     </PaginationList>
   );

@@ -6,7 +6,7 @@ import {
 } from './tagListSlice';
 import Title from '../../components/Title/Title';
 import {
-  Taglist, Wrapper, ItemName,
+  StyledFlexbox, ItemName, ItemCount,
 } from './styles';
 import ContentComponent from '../../components/Content/Content';
 import Checkbox from '../../components/Checkbox/Checkbox';
@@ -19,12 +19,12 @@ const TagListComponent = () => {
   const dispatch = useDispatch();
 
   return (
-    <Taglist>
+    <>
       <Title title="Tags" />
       <ContentComponent placeholder="Search tag" onChange={(e) => dispatch(setTagListSearchKey(e.target.value))}>
         {
         tagList.map((tag) => (
-          <Wrapper key={tag.name}>
+          <StyledFlexbox key={tag.name}>
             <Flexbox alignCenter justifyContent="start">
               <Checkbox
                 type="checkbox"
@@ -33,19 +33,17 @@ const TagListComponent = () => {
                 onChange={(e) => dispatch(setSelectedTags(e.target.value))}
               />
               <ItemName>{tag.name}</ItemName>
-              <ItemName>
-                &nbsp;
+              <ItemCount>
                 (
                 {tag.count}
                 )
-              </ItemName>
+              </ItemCount>
             </Flexbox>
-          </Wrapper>
+          </StyledFlexbox>
         ))
       }
-
       </ContentComponent>
-    </Taglist>
+    </>
   );
 };
 

@@ -4,23 +4,25 @@ import Flexbox from '../../components/Flexbox/Flexbox';
 import {
   decrement,
   increment,
+  selectCartTotal,
   selectItems,
 } from './cartSlice';
+
 import {
-  Cart, ItemName, Total, ItemPrice, Value, Button,
+  Cart, ItemName, Total, ItemPrice, Value, StyledButton, StyledFlexbox, CartTotal,
 } from './styles';
 
 export default function CartComponent() {
   const items = useSelector(selectItems);
+  const cartTotal = useSelector(selectCartTotal);
   const dispatch = useDispatch();
 
   return (
     <>
-      {items.length ? (
-        <Cart>
-          {
+      <Cart className={items.length && 'is-visible'}>
+        {
         items.map((item) => (
-          <Flexbox>
+          <StyledFlexbox>
             <Flexbox direction="column">
               <ItemName>{item.name}</ItemName>
               <Total>
@@ -30,28 +32,33 @@ export default function CartComponent() {
                 </ItemPrice>
               </Total>
             </Flexbox>
-            <Flexbox>
-              <Button
+            <Flexbox alignCenter>
+              <StyledButton
                 type="button"
                 aria-label="Decrement value"
                 onClick={() => dispatch(decrement(item))}
               >
                 -
-              </Button>
+              </StyledButton>
               <Value>{item.amount}</Value>
-              <Button
+              <StyledButton
                 type="button"
                 aria-label="Increment value"
                 onClick={() => dispatch(increment(item))}
               >
                 +
-              </Button>
+              </StyledButton>
             </Flexbox>
-          </Flexbox>
+          </StyledFlexbox>
         ))
       }
-        </Cart>
-      ) : null}
+        <CartTotal>
+          <span>
+            $
+            {cartTotal}
+          </span>
+        </CartTotal>
+      </Cart>
     </>
   );
 }

@@ -1,18 +1,8 @@
 import styled from 'styled-components';
+import { Flexbox } from '../../components/Flexbox/styles';
 
-export const Taglist = styled.div`
-  width: 280px;
-  
-  @media (max-width: 1200px) {  
-    width: 30%;
-  }
-`;
-
-export const Wrapper = styled.div`
+export const StyledFlexbox = styled(Flexbox)`
   margin: 16px 0;
-  color: #525252;
-  display: flex;
-  align-items: center;
 
   &:first-child {
     margin-top: 0;
@@ -25,4 +15,10 @@ export const ItemName = styled.div`
   overflow: hidden;
   white-space: nowrap;
   margin-left: 8px;
+`;
+
+export const ItemCount = styled.div`
+  font-size: 14px;
+  color: #A8A8A8;
+  margin-left: 4px;
 `;

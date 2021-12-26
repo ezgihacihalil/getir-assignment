@@ -3,6 +3,15 @@ import styled from 'styled-components';
 export const ProductList = styled.div`
   flex: 2;
   margin-left: 16px;
+
+  @media (max-width: 1200px) {
+    margin-left: 0;
+  }
+
+  @media (max-width: 768px) {
+    margin-top: 24px;
+    width: 100%;
+  }
 `;
 
 export const Content = styled.div`
@@ -17,11 +26,13 @@ export const Content = styled.div`
 export const Product = styled.div`
   width: 124px;
   margin: 8px 12px;
-  transition: 0.4s;
 
   @media (max-width: 1200px) {
-    width: 44%;
-    margin: 8px auto;
+    width: 285px;
+  }
+
+  @media (max-width: 768px) {
+    width: 324px;
   }
 `;
 
@@ -32,14 +43,13 @@ export const ImageBox = styled.div`
 `;
 
 export const Image = styled.div`
-  width: 92px;
-  height: 92px;
+  width: 100%;
+  height: 90px;
   background: #c4c4c4; 
   margin: auto;
 
   @media (max-width: 1200px) {
-    width: 131px;
-    height: 131px;
+    height: 244px;
   }
 `;
 

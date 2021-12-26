@@ -9,7 +9,7 @@ import {
 } from './brandsSlice';
 import Title from '../../components/Title/Title';
 import {
-  BrandList, Wrapper, ItemName,
+  BrandList, StyledFlexbox, ItemName,
 } from './styles';
 import Content from '../../components/Content/Content';
 import Flexbox from '../../components/Flexbox/Flexbox';
@@ -31,7 +31,7 @@ const Brands = () => {
       <Content placeholder="Search brand" onChange={(e) => dispatch(setBrandSearchKey(e.target.value))}>
         {
         brandList.map((brand) => (
-          <Wrapper key={brand.slug}>
+          <StyledFlexbox key={brand.slug}>
             <Flexbox alignCenter justifyContent="start">
               <Checkbox
                 type="checkbox"
@@ -41,7 +41,7 @@ const Brands = () => {
               />
               <ItemName>{brand.name}</ItemName>
             </Flexbox>
-          </Wrapper>
+          </StyledFlexbox>
         ))
       }
       </Content>

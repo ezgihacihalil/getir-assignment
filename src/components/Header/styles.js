@@ -12,15 +12,27 @@ export const Header = styled.header`
   @media (max-width: 960px) {
     padding: 0 20px;
   }
+
+  @media (max-width: 768px) {
+    padding: 0 24px;
+  }
 `;
 
 export const StyledContent = styled.div`
   flex: 1;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 export const Logo = styled.a`
   flex: 2;
   text-align: center;
+
+  @media (max-width: 768px) {
+    text-align: left;
+  }
 `;
 
 export const HeaderPrice = styled.div`

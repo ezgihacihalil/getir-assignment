@@ -11,9 +11,28 @@ export const PaginationList = styled.div`
   line-height: 16px;
   padding: 12px;
   list-style-type: none;
+  box-sizing: border-box;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
-export const ListItem = styled.div``;
+export const ListItem = styled.div`
+  cursor: pointer;
+
+  &.is-disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+`;
+
+export const ButtonWrapper = styled.div`
+  &.is-disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+`;
 
 export const ArrowButton = styled.span`
   display: flex;
@@ -27,7 +46,7 @@ export const PrevButton = styled.span`
 export const PageNumber = styled.span`
   padding: 12px;
 
-  &.active {
+  &.is-active {
     background-color: #1EA4CE;
     color: #fff;
   }

@@ -9,12 +9,9 @@ export const Flexbox = styled.div`
   ${(props) => props.direction === 'column' && css`
     flex-direction: column;
   `}
-
-    @media (max-width: 1200px) {
-      flex-direction: row;
-      justify-content: ${(props) => (props.justifyContent === 'start' ? 'flex-start' : 'space-between')};
-      width: 100%;
-    }
+  font-size: 14px;
+  line-height: 18px;
+  color: #525252;
 `;
 
 export default {};

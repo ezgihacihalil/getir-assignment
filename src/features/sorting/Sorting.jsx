@@ -8,7 +8,7 @@ import { SORTING_OPTIONS } from '../../constants';
 import Title from '../../components/Title/Title';
 import Checkbox from '../../components/Checkbox/Checkbox';
 import {
-  Sorting, SortingBody, Wrapper, ItemName,
+  SortingBody, Wrapper, ItemName,
 } from './styles';
 
 export default function SortingComponent() {
@@ -16,7 +16,7 @@ export default function SortingComponent() {
   const dispatch = useDispatch();
 
   return (
-    <Sorting>
+    <>
       <Title title="Sorting" />
       <SortingBody>
         {
@@ -33,6 +33,6 @@ export default function SortingComponent() {
         ))
       }
       </SortingBody>
-    </Sorting>
+    </>
   );
 }

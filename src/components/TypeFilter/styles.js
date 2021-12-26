@@ -11,15 +11,12 @@ export const Item = styled.div`
   font-size: 13px;
   line-height: 18px;
   cursor: pointer;
+  background-color: #F2F0FD;
+  color: #1EA4CE;
 
-  &:first-child {
+  &.is-active {
     background-color: #1EA4CE;
     color: #fff;
-  }
-
-  &:last-child {
-    background-color: #F2F0FD;
-    color: #1EA4CE;
   }
 `;
 
