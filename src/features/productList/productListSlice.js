@@ -76,7 +76,7 @@ export const selectProducts = (state) => {
   }
 
   if (checkedTags.length) {
-    productList = productList.filter((item) => item.tags.every((t) => checkedTags.includes(t)));
+    productList = productList.filter((item) => item.tags.some((t) => checkedTags.includes(t)));
   }
 
   if (selectedType) {
